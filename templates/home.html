@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"
+          integrity="sha256-bC3LCZCwKeehY6T4fFi9VfOU0gztUa+S4cnkIhVPZ5E=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+<script>
+  const data = {
+    labels: {{ x | tojson }},
+    datasets: [
+      {
+        label: 'My First dataset',
+        data: {{ y | tojson }},
+      }],
+  };
+  const config = {
+    type: 'line',
+    data: data,
+  };
+  const myChart = new Chart(
+      document.getElementById('myChart'),
+      config,
+  );
+</script>
+</body>
+</html>
