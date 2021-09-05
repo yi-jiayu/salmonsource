@@ -1,7 +1,7 @@
 from itertools import takewhile
 
 import requests
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, redirect, render_template, request, url_for
 
 from config import config
 
@@ -19,7 +19,7 @@ def get_coop_results(splatnet_cookie):
 
 @app.route("/")
 def home():
-    splatnet_cookie = session.get("splatnet_cookie")
+    splatnet_cookie = request.args.get("splatnet_cookie")
     if not splatnet_cookie:
         return redirect(url_for("signin"))
     else:
@@ -39,7 +39,6 @@ def home():
 def signin():
     if request.method == "POST":
         splatnet_cookie = request.form["splatnet_cookie"]
-        session["splatnet_cookie"] = splatnet_cookie
-        return redirect(url_for("home"))
+        return redirect(url_for("home", splatnet_cookie=splatnet_cookie))
     else:
         return render_template("signin.html")
