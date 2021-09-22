@@ -23,6 +23,38 @@
   const config = {
     type: 'line',
     data: data,
+    options: {
+      aspectRatio: 4,
+      elements: {
+        point: {
+          backgroundColor: 'blue',
+          radius: 5,
+        },
+        line: {
+          borderColor: 'blue',
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      scales: {
+        x: {
+          display: false,
+        },
+        y: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            font: {
+              size: 24,
+            },
+          },
+        },
+      },
+    },
   };
   const myChart = new Chart(
       document.getElementById('myChart'),
